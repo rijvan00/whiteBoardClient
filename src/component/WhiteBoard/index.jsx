@@ -28,56 +28,56 @@ const Canvas = ({
     ctxRef.current = context;
   }, []);
 
-  useEffect(() => {
-    socket.on("WhiteBoardDataResponse", (data) => {
-      for (let i = 0; i < data.length; i++) {
-        const element = data[i];
-        // console.log(element);
-        const offsetX = element.offsetX;
-        const offsetY = element.offsetY;
-        const stroke = element.stroke;
-        const tool = element.element;
-        if (tool === "pencil") {
-          setElements((prevElements) => [
-            ...prevElements,
-            {
-              offsetX,
-              offsetY,
-              path: [[offsetX, offsetY]],
-              stroke,
-              element: tool,
-            },
-          ]);
-        } else if (tool === "rectangle") {
-          setElements((prevElements) => [
-            ...prevElements,
-            {
-              offsetX,
-              offsetY,
-              width: element.width,
-              height: element.height,
-              stroke,
-              element: tool,
-            },
-          ]);
-        } else if (tool === "line") {
-          setElements((prevElements) => [
-            ...prevElements,
-            {
-              offsetX,
-              offsetY,
-              width: element.width,
-              height: element.height,
-              stroke,
-              element: tool,
-            },
-          ]);
-        }
-      }
-    });
-    setIsDrawing(true);
+  // useEffect(() => {
+  //   socket.on("WhiteBoardDataResponse", (data) => {
+  //     for (let i = 0; i < data.length; i++) {
+  //       const element = data[i];
+  //       // console.log(element);
+  //       const offsetX = element.offsetX;
+  //       const offsetY = element.offsetY;
+  //       const stroke = element.stroke;
+  //       const tool = element.element;
+  //       if (tool === "pencil") {
+  //         setElements((prevElements) => [
+  //           ...prevElements,
+  //           {
+  //             offsetX,
+  //             offsetY,
+  //             path: [[offsetX, offsetY]],
+  //             stroke,
+  //             element: tool,
+  //           },
+  //         ]);
+  //       } else if (tool === "rectangle") {
+  //         setElements((prevElements) => [
+  //           ...prevElements,
+  //           {
+  //             offsetX,
+  //             offsetY,
+  //             width: element.width,
+  //             height: element.height,
+  //             stroke,
+  //             element: tool,
+  //           },
+  //         ]);
+  //       } else if (tool === "line") {
+  //         setElements((prevElements) => [
+  //           ...prevElements,
+  //           {
+  //             offsetX,
+  //             offsetY,
+  //             width: element.width,
+  //             height: element.height,
+  //             stroke,
+  //             element: tool,
+  //           },
+  //         ]);
+  //       }
+  //     }
+  //   });
+  //   setIsDrawing(true);
 
-  }, [elements]);
+  // }, [elements]);
 
   useEffect(() => {
     ctxRef.current.strokeStyle = color;
